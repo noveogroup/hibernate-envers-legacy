@@ -23,6 +23,7 @@ public class AuditionRootEntitiesFinder implements EntitiesFinder {
             final Class<?> javaType = metadata.getMappedClass();
             if (javaType.isAnnotationPresent(AuditionRoot.class)) {
                 final Criteria criteria = session.createCriteria(metadata.getEntityName());
+                criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
                 @SuppressWarnings("rawtypes")
                 final List list = criteria.list();
                 for (Object entity : list) {
